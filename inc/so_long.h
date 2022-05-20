@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 20:29:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/20 20:57:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <stdlib.h>
 # define D (*data)
 # define WINSIZE 50
+# define TOP	1
+# define BACK 2
+# define RIGHT	3
+# define LEFT	4
 # define WALL_PATH "img/wall/Rock2.xpm"
 # define EMPTY_PATH "img/empty/empty1.xpm"
 # define ITEM_PATH "img/item/item1.xpm"
@@ -82,6 +86,7 @@ typedef struct s_data // all game data
 	t_mlx	mlxdata;
 	t_img	imgdata;
 	t_mapdata	mapdata;
+	int	dir;
 } t_data;
 
 char	*get_next_line(int fd);

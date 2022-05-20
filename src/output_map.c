@@ -6,11 +6,16 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:20:24 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 20:41:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/20 20:57:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	output_player(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(D.mlxdata.mlx, D.mlxdata.win, D.imgdata.player.right.img, x, y);
+}
 
 void	output_splites(t_data *data, int col, int row, int index)
 {
@@ -25,7 +30,7 @@ void	output_splites(t_data *data, int col, int row, int index)
 	else if (D.mapdata.map[index] == 'E')
 		mlx_put_image_to_window(D.mlxdata.mlx, D.mlxdata.win, D.imgdata.exit.img, x, y);
 	else if (D.mapdata.map[index] == 'P')
-		mlx_put_image_to_window(D.mlxdata.mlx, D.mlxdata.win, D.imgdata.player.right.img, x, y);
+		output_player(data, x, y);
 	else if (D.mapdata.map[index] == 'C')
 		mlx_put_image_to_window(D.mlxdata.mlx, D.mlxdata.win, D.imgdata.item.img, x, y);
 }

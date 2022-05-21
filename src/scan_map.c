@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 12:21:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 17:07:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ char *read_map(char const *filepath, t_data *data)
 	map = get_next_line(fd); // need to check error
 	if (map == NULL)
 	{ /* need to check error */ }
-	D.mapdata.row = ft_strlen(map) - 1;
+	DB.mapdata.row = ft_strlen(map) - 1;
 	while (1)
 	{
-		D.mapdata.col++;
+		DB.mapdata.col++;
 		line = get_next_line(fd); // need to check error
 		if (line == NULL)
 			break;
@@ -61,17 +61,17 @@ int scan_wall(char *map, t_data *data)
 
 	j = 0;
 	i = 0;
-	while (i < D.mapdata.row)
+	while (i < DB.mapdata.row)
 	{
 		if (map[i++] != '1')
 			return (1);
 	}
-	while (j++ < D.mapdata.col - 2)
+	while (j++ < DB.mapdata.col - 2)
 	{
 		i++;
-		if (map[i] != '1' || map[i + D.mapdata.row - 1] != '1')
+		if (map[i] != '1' || map[i + DB.mapdata.row - 1] != '1')
 			return (2);
-		i += D.mapdata.row;
+		i += DB.mapdata.row;
 	}
 	i++;
 	while (map[i] != '\n' && map[i] != '\0')
@@ -101,8 +101,8 @@ void	scan_map(char const *filepath, t_data *data)
 {
 	//error check
 	//read map
-	D.mapdata.map = read_map(filepath, data);
-	if (scan_line(D.mapdata.map, &D))
+	DB.mapdata.map = read_map(filepath, data);
+	if (scan_line(DB.mapdata.map, &DB))
 		ft_putstr("ERROR MAP\n");
-	printf("%s", D.mapdata.map);
+	printf("%s", DB.mapdata.map);
 }

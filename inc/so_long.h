@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 20:57:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 18:45:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define D (*data)
+# define DB (*data)
 # define WINSIZE 50
 # define TOP	1
-# define BACK 2
-# define RIGHT	3
-# define LEFT	4
+# define DOWN 2
+# define LEFT	3
+# define RIGHT	4
+# define A 0
+# define W 13
+# define S 1
+# define D 2
+# define ESC 53
 # define WALL_PATH "img/wall/Rock2.xpm"
 # define EMPTY_PATH "img/empty/empty1.xpm"
 # define ITEM_PATH "img/item/item1.xpm"
@@ -60,7 +65,7 @@ typedef struct s_imgdata //imgdata
 typedef struct s_player //player imgdata
 {
 	t_imgdata	top;
-	t_imgdata	back;
+	t_imgdata	down;
 	t_imgdata	left;
 	t_imgdata	right;
 } t_player;
@@ -86,7 +91,9 @@ typedef struct s_data // all game data
 	t_mlx	mlxdata;
 	t_img	imgdata;
 	t_mapdata	mapdata;
+	t_cie	cie;
 	int	dir;
+	int	index;
 } t_data;
 
 char	*get_next_line(int fd);
@@ -94,4 +101,6 @@ void	scan_map(char const *filepath, t_data *data);
 void	init_window(t_data *data);
 void	init_image(t_data *data);
 void	output_map(t_data *data);
+int		action(int keycode, t_data *data);
+void	output_player(t_data *data, int x, int y, int index);
 #endif

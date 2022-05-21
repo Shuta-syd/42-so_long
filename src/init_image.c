@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:30:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 16:16:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 17:08:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_all_images(t_imgdata *img, void *mlx, char *filepath)
 // initialize images
 void	init_image(t_data *data)
 {
-	init_all_images(&D.imgdata.wall, D.mlxdata.mlx, WALL_PATH);
-	init_all_images(&D.imgdata.empty, D.mlxdata.mlx, EMPTY_PATH);
-	init_all_images(&D.imgdata.item, D.mlxdata.mlx, ITEM_PATH);
-	init_all_images(&D.imgdata.exit, D.mlxdata.mlx, EXIT_PATH);
-	init_all_images(&D.imgdata.player.top, D.mlxdata.mlx, PLAYER_TOP_PATH);
-	init_all_images(&D.imgdata.player.back, D.mlxdata.mlx, PLAYER_BACK_PATH);
-	init_all_images(&D.imgdata.player.left, D.mlxdata.mlx, PLAYER_LEFT_PATH);
-	init_all_images(&D.imgdata.player.right, D.mlxdata.mlx, PLAYER_RIGHT_PATH);
+	init_all_images(&DB.imgdata.wall, DB.mlxdata.mlx, WALL_PATH);
+	init_all_images(&DB.imgdata.empty, DB.mlxdata.mlx, EMPTY_PATH);
+	init_all_images(&DB.imgdata.item, DB.mlxdata.mlx, ITEM_PATH);
+	init_all_images(&DB.imgdata.exit, DB.mlxdata.mlx, EXIT_PATH);
+	init_all_images(&DB.imgdata.player.top, DB.mlxdata.mlx, PLAYER_TOP_PATH);
+	init_all_images(&DB.imgdata.player.down, DB.mlxdata.mlx, PLAYER_BACK_PATH);
+	init_all_images(&DB.imgdata.player.left, DB.mlxdata.mlx, PLAYER_LEFT_PATH);
+	init_all_images(&DB.imgdata.player.right, DB.mlxdata.mlx, PLAYER_RIGHT_PATH);
 }

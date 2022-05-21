@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/20 16:20:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 18:21:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ void	scan_args(int argc, char const *argv[])
 //initialize status
 void	init_data(t_data *data)
 {
-	D = (t_data){};
-	D.mlxdata = (t_mlx){};
-	D.imgdata.wall = (t_imgdata){};
-	D.imgdata.empty = (t_imgdata){};
-	D.imgdata.exit = (t_imgdata){};
-	D.imgdata.item = (t_imgdata){};
-	D.imgdata.player.top = (t_imgdata){};
-	D.imgdata.player.back = (t_imgdata){};
-	D.imgdata.player.left = (t_imgdata){};
-	D.imgdata.player.right = (t_imgdata){};
-	D.mapdata = (t_mapdata){};
+	DB = (t_data){};
+	DB.cie = (t_cie){};
+	DB.mlxdata = (t_mlx){};
+	DB.imgdata.wall = (t_imgdata){};
+	DB.imgdata.empty = (t_imgdata){};
+	DB.imgdata.exit = (t_imgdata){};
+	DB.imgdata.item = (t_imgdata){};
+	DB.imgdata.player.top = (t_imgdata){};
+	DB.imgdata.player.down = (t_imgdata){};
+	DB.imgdata.player.left = (t_imgdata){};
+	DB.imgdata.player.right = (t_imgdata){};
+	DB.mapdata = (t_mapdata){};
 }
 
 int main(int argc, char const *argv[])
@@ -52,7 +53,9 @@ int main(int argc, char const *argv[])
 	scan_map(argv[1], &data);
 	init_window(&data);
 	init_image(&data);
+	data.dir = RIGHT;
 	output_map(&data);
+	mlx_key_hook(data.mlxdata.win, action, &data);
 	mlx_loop(data.mlxdata.mlx);
 	// system("leaks so_long");
 	return (0);

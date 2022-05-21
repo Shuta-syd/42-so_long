@@ -6,19 +6,20 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/20 19:15:26 by shogura          ###   ########.fr        #
+#    Updated: 2022/05/21 17:28:02 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g #-Wall -Wextra -Werror
 
 MLX = mlx/libmlx_Darwin.a
 
 LIBFT = src/libft/libft.a
 
-SRC_FILES = so_long.c scan_map.c init_window.c init_image.c output_map.c
+SRC_FILES = so_long.c scan_map.c init_window.c init_image.c output_map.c\
+						hook_action.c
 
 SRC_GNL = gnl/get_next_line.c
 

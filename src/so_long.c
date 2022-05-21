@@ -6,11 +6,26 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 18:21:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 21:36:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+//delete window by esc or x button
+void	clear_window(int keycode, t_data *data)
+{
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
+		exit(1);
+	}
+	else if (DB.exit == true) //CLEAR画面を表示してもいい
+	{
+		mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
+		exit(1);
+	}
+}
 
 //check error in args
 void	scan_args(int argc, char const *argv[])
@@ -51,6 +66,7 @@ int main(int argc, char const *argv[])
 	scan_args(argc, argv);
 	init_data(&data);
 	scan_map(argv[1], &data);
+	printf("item->%d\n", data.mapdata.item);
 	init_window(&data);
 	init_image(&data);
 	data.dir = RIGHT;

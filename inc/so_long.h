@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 18:45:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 21:22:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_mlx //x window data
 
 typedef struct s_cie
 {
-	int	x;
-	int	y;
+	unsigned int x;
+	unsigned int y;
 } t_cie;
 
 typedef struct s_imgdata //imgdata
@@ -81,9 +81,10 @@ typedef struct s_img // all imgdata
 
 typedef struct s_mapdata //map data is here
 {
-	char *map; // Map information for one-dimensional arrays
-	int		row;
-	int		col;
+	char	*map; // Map information for one-dimensional arrays
+	unsigned int	row;
+	unsigned int	col;
+	unsigned int	item;
 } t_mapdata;
 
 typedef struct s_data // all game data
@@ -92,8 +93,11 @@ typedef struct s_data // all game data
 	t_img	imgdata;
 	t_mapdata	mapdata;
 	t_cie	cie;
-	int	dir;
-	int	index;
+	unsigned int	dir;
+	unsigned int	index;
+	unsigned int	c_item;
+	unsigned int	step;
+	bool	exit;
 } t_data;
 
 char	*get_next_line(int fd);
@@ -102,5 +106,7 @@ void	init_window(t_data *data);
 void	init_image(t_data *data);
 void	output_map(t_data *data);
 int		action(int keycode, t_data *data);
-void	output_player(t_data *data, int x, int y, int index);
+int	scan_wall(char *map, t_data *data);
+int	scan_line(char *map, t_data *data);
+void	clear_window(int keycode, t_data *data);
 #endif

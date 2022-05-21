@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:22:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 21:41:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	init_window(t_data *data);
 void	init_image(t_data *data);
 void	output_map(t_data *data);
 int		action(int keycode, t_data *data);
-int	scan_wall(char *map, t_data *data);
-int	scan_line(char *map, t_data *data);
+int		scan_wall(char *map, t_data *data);
+int		scan_line(char *map, t_data *data);
 void	clear_window(int keycode, t_data *data);
 #endif

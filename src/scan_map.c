@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 19:49:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 22:20:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	scan_map(char const *filepath, t_data *data)
 	//error check
 	//read map
 	DB.mapdata.map = read_map(filepath, data);
-	if (scan_line(DB.mapdata.map, &DB))
+	if (scan_line(DB.mapdata.map, data))
 		ft_putstr("ERROR MAP\n");
+	check_dir(DB.mapdata.map, data);
 	printf("%s", DB.mapdata.map);
 }

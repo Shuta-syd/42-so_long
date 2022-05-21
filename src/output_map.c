@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:20:24 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 18:21:10 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 21:41:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	output_splites(t_data *data, int col, int row, int index)
 //output map to the window
 void	output_map(t_data *data)
 {
-	int	index;
 	int	row;
 	int	col;
+	int	index;
 
 	col = 0;
 	index = 0;

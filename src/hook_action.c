@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:37:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/21 21:49:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	check_exit(t_data *data)
 	return (false);
 }
 
-void	check_dir(int keycode, t_data *data)
+void	switch_dir(int keycode, t_data *data)
 {
 	if (keycode == W)
 		DB.dir = TOP;
@@ -65,7 +65,7 @@ bool	check_wall_item_exit(int keycode, t_data *data)
 */
 void	move_player(int keycode, t_data *data)
 {
-	check_dir(keycode, data);
+	switch_dir(keycode, data);
 	if (!check_wall_item_exit(keycode, data))
 		return ;
 	if (keycode == W)

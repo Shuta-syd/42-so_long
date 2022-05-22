@@ -6,13 +6,13 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/21 19:46:41 by shogura          ###   ########.fr        #
+#    Updated: 2022/05/22 13:50:13 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -Imlx -g -Wall -Wextra -Werror
 
 MLX = mlx/libmlx_Darwin.a
 
@@ -28,7 +28,7 @@ SRC = ${addprefix src/, ${SRC_FILES} ${SRC_GNL}}
 OBJS = ${SRC:.c=.o}
 
 ifdef home
-	MFLAGS = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
+	MFLAG = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
 	MFLAG = -lmlx -framework OpenGL -framework AppKit
 endif

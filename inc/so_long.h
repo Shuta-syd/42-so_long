@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:41:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/22 13:56:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_mlx //x window data
 
 typedef struct s_cie
 {
-	unsigned int x;
-	unsigned int y;
+	int x;
+	int y;
 } t_cie;
 
 typedef struct s_imgdata //imgdata
@@ -82,9 +82,9 @@ typedef struct s_img // all imgdata
 typedef struct s_mapdata //map data is here
 {
 	char	*map; // Map information for one-dimensional arrays
-	unsigned int	row;
-	unsigned int	col;
-	unsigned int	item;
+	int	row;
+	int	col;
+	int	item;
 } t_mapdata;
 
 typedef struct s_data // all game data
@@ -93,10 +93,10 @@ typedef struct s_data // all game data
 	t_img	imgdata;
 	t_mapdata	mapdata;
 	t_cie	cie;
-	unsigned int	dir;
-	unsigned int	index;
-	unsigned int	c_item;
-	unsigned int	step;
+	 int	dir;
+	 int	index;
+	 int	c_item;
+	 int	step;
 	bool	exit;
 } t_data;
 

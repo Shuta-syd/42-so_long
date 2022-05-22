@@ -1,0 +1,8 @@
+Makefile.gen
+.DS_Store
+img/.DS_Store
+img/empty/.DS_Store
+img/exit/.DS_Store
+img/item/.DS_Store
+img/player/.DS_Store
+img/wall/.DS_Store

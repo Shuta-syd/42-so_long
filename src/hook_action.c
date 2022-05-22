@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:49:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/22 13:56:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	action(int keycode, t_data *data)
 		clear_window(keycode, data);
 	if (DB.exit == true)
 		clear_window(keycode, data);
+	return (0);
 }
 
 /*

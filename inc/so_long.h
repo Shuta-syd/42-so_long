@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:11:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:55:08 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define A 0
 # define S 1
 # define D 2
+# define R 15
 # define ESC 53
 //JSキー keymap
 # define WJ 119
@@ -91,6 +92,7 @@ typedef struct s_img // all imgdata
 typedef struct s_mapdata //map data is here
 {
 	char	*map;
+	char	*map_backup;
 	int		row;
 	int		col;
 }	t_mapdata;
@@ -117,4 +119,6 @@ int		action(int keycode, t_data *data);
 int		scan_wall(char *map, t_data *data);
 int		scan_line(char *map, t_data *data);
 int		destroy_window(t_data *data);
+void	clear_game(t_data *data);
+void	replay_game(t_data *data);
 #endif

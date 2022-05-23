@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:10:36 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 22:04:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 //delete window by esc or x button
 int	destroy_window(t_data *data)
 {
-	mlx_destroy_window((*data).mlxdata.mlx, (*data).mlxdata.win);
+	mlx_destroy_window(data->mlxdata.mlx, data->mlxdata.win);
 	ft_putstr("[EXIT]");
-	free((*data).mapdata.map);
+	free(data->mapdata.map);
+	free(data->mapdata.map_backup);
 	exit(1);
 }
 
@@ -40,17 +41,17 @@ void	scan_args(int argc, char const *argv[])
 void	init_data(t_data *data)
 {
 	(*data) = (t_data){};
-	(*data).cie = (t_cie){};
-	(*data).mlxdata = (t_mlx){};
-	(*data).imgdata.wall = (t_imgdata){};
-	(*data).imgdata.empty = (t_imgdata){};
-	(*data).imgdata.exit = (t_imgdata){};
-	(*data).imgdata.item = (t_imgdata){};
-	(*data).imgdata.player.top = (t_imgdata){};
-	(*data).imgdata.player.down = (t_imgdata){};
-	(*data).imgdata.player.left = (t_imgdata){};
-	(*data).imgdata.player.right = (t_imgdata){};
-	(*data).mapdata = (t_mapdata){};
+	data->cie = (t_cie){};
+	data->mlxdata = (t_mlx){};
+	data->imgdata.wall = (t_imgdata){};
+	data->imgdata.empty = (t_imgdata){};
+	data->imgdata.exit = (t_imgdata){};
+	data->imgdata.item = (t_imgdata){};
+	data->imgdata.player.top = (t_imgdata){};
+	data->imgdata.player.down = (t_imgdata){};
+	data->imgdata.player.left = (t_imgdata){};
+	data->imgdata.player.right = (t_imgdata){};
+	data->mapdata = (t_mapdata){};
 }
 
 int	main(int argc, char const *argv[])
@@ -66,7 +67,6 @@ int	main(int argc, char const *argv[])
 	output_map(&data);
 	mlx_hook(data.mlxdata.win, 2, 1L << 0, action, &data);
 	mlx_hook(data.mlxdata.win, 17, 1L << 2, destroy_window, &data);
-	mlx_do_key_autorepeaton(data.mlxdata.mlx);
 	mlx_loop(data.mlxdata.mlx);
 	return (0);
 }

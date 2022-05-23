@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:20:24 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:41:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/22 21:06:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	output_splites(t_data *data, int col, int row, int index)
 
 	x = row * WINSIZE;
 	y = col * WINSIZE;
+	(void)index;
 	mlx_put_image_to_window(DB.mlxdata.mlx, DB.mlxdata.win, DB.imgdata.empty.img, x, y);
 	if (DB.mapdata.map[index] == '1')
 		mlx_put_image_to_window(DB.mlxdata.mlx, DB.mlxdata.win, DB.imgdata.wall.img, x, y);

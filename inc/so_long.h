@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/22 13:56:09 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:46:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,29 @@
 # define DOWN 2
 # define LEFT	3
 # define RIGHT	4
-# define A 0
+
+//USキー keymap
 # define W 13
+# define A 0
 # define S 1
 # define D 2
+//JSキー keymap
+# define WJ 119
+# define AJ 97
+# define SJ 115
+# define DJ 100
+# define ESCJ 65307
+
 # define ESC 53
-# define WALL_PATH "img/wall/Rock2.xpm"
+# define ME "img/player/me.xpm"
+# define WALL_PATH "img/wall/wall1.xpm"
 # define EMPTY_PATH "img/empty/empty1.xpm"
 # define ITEM_PATH "img/item/item1.xpm"
+# define PLAYER_TOP_PATH "img/player/player1_top.xpm"
 # define EXIT_PATH "img/exit/exit1.xpm"
-# define PLAYER_TOP_PATH "img/player/top1.xpm"
-# define PLAYER_BACK_PATH "img/player/back1.xpm"
-# define PLAYER_LEFT_PATH "img/player/left1.xpm"
-# define PLAYER_RIGHT_PATH "img/player/right1.xpm"
+# define PLAYER_DOWN_PATH "img/player/player1_down.xpm"
+# define PLAYER_LEFT_PATH "img/player/player1_left.xpm"
+# define PLAYER_RIGHT_PATH "img/player/player1_right.xpm"
 
 typedef struct s_mlx //x window data
 {

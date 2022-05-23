@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:30:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 17:08:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:42:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	init_image(t_data *data)
 	init_all_images(&DB.imgdata.item, DB.mlxdata.mlx, ITEM_PATH);
 	init_all_images(&DB.imgdata.exit, DB.mlxdata.mlx, EXIT_PATH);
 	init_all_images(&DB.imgdata.player.top, DB.mlxdata.mlx, PLAYER_TOP_PATH);
-	init_all_images(&DB.imgdata.player.down, DB.mlxdata.mlx, PLAYER_BACK_PATH);
+	init_all_images(&DB.imgdata.player.down, DB.mlxdata.mlx, PLAYER_DOWN_PATH);
 	init_all_images(&DB.imgdata.player.left, DB.mlxdata.mlx, PLAYER_LEFT_PATH);
 	init_all_images(&DB.imgdata.player.right, DB.mlxdata.mlx, PLAYER_RIGHT_PATH);
+	// init_all_images(&DB.imgdata.player.top, DB.mlxdata.mlx, ME);
 }

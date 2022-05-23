@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/22 13:56:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:40:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ bool	check_exit(t_data *data)
 
 void	switch_dir(int keycode, t_data *data)
 {
-	if (keycode == W)
+	if (keycode == WJ)
 		DB.dir = TOP;
-	else if (keycode == A)
+	else if (keycode == AJ)
 		DB.dir = LEFT;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		DB.dir = DOWN;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		DB.dir = RIGHT;
 }
 
@@ -40,13 +40,13 @@ bool	check_wall_item_exit(int keycode, t_data *data)
 	int	step;
 
 	step = 0;
-	if (keycode == W)
+	if (keycode == WJ)
 		step = -(DB.mapdata.row + 1);
-	else if (keycode == A)
+	else if (keycode == AJ)
 		step = -1;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		step = DB.mapdata.row + 1;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		step = 1;
 	if (DB.mapdata.map[DB.index + step] == '1')
 		return (false);
@@ -68,20 +68,20 @@ void	move_player(int keycode, t_data *data)
 	switch_dir(keycode, data);
 	if (!check_wall_item_exit(keycode, data))
 		return ;
-	if (keycode == W)
+	if (keycode == WJ)
 		DB.mapdata.map[DB.index - (DB.mapdata.row + 1)] = 'P';
-	else if (keycode == A)
+	else if (keycode == AJ)
 		DB.mapdata.map[DB.index - 1] = 'P';
-	else if (keycode == S)
+	else if (keycode == SJ)
 		DB.mapdata.map[DB.index + (DB.mapdata.row + 1)] = 'P';
-	else if (keycode == D)
+	else if (keycode == DJ)
 		DB.mapdata.map[DB.index + 1] = 'P';
 }
 
 int	action(int keycode, t_data *data)
 {
 	printf("keycode->%d item->%d\n", keycode, DB.c_item);
-	if (keycode == A || keycode == W || keycode == S || keycode == D)
+	if (keycode == AJ || keycode == WJ || keycode == SJ || keycode == DJ)
 	{
 		move_player(keycode, data);
 		output_map(data);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 21:36:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:40:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //delete window by esc or x button
 void	clear_window(int keycode, t_data *data)
 {
-	if (keycode == ESC)
+	if (keycode == ESCJ)
 	{
 		mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
 		exit(1);

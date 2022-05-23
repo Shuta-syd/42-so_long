@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 20:05:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:10:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	read_fail(int pattern)
 char	*create_map(char **line1, char **line2)
 {
 	char		*map;
-	size_t	len;
+	size_t		len;
 
 	len = ft_strlen(*line1) + ft_strlen(*line2);
 	map = ft_calloc(len + 1, sizeof(char));
@@ -57,13 +57,13 @@ char	*read_map(char const *filepath, t_data *data)
 	map = get_next_line(fd);
 	if (map == NULL)
 		read_fail(2);
-	DB.mapdata.row = ft_strlen(map) - 1;
+	(*data).mapdata.row = ft_strlen(map) - 1;
 	while (1)
 	{
-		DB.mapdata.col++;
+		(*data).mapdata.col++;
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
+			break ;
 		map = create_map(&map, &line);
 		if (map == NULL)
 			read_fail(3);
@@ -74,10 +74,10 @@ char	*read_map(char const *filepath, t_data *data)
 //scan_map to check errors and read map
 void	scan_map(char const *filepath, t_data *data)
 {
-	DB.mapdata.map = read_map(filepath, data);
-	if (scan_line(DB.mapdata.map, data))
+	(*data).mapdata.map = read_map(filepath, data);
+	if (scan_line((*data).mapdata.map, data))
 	{
-		free(DB.mapdata.map);
+		free((*data).mapdata.map);
 		ft_putstr("Invalid Map!!\n");
 	}
 }

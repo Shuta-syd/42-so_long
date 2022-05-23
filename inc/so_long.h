@@ -6,12 +6,12 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 20:02:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:11:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
 # include "../src/libft/libft.h"
 # include <stdbool.h>
@@ -20,7 +20,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define DB (*data)
 # define WINSIZE 50
 # define TOP	1
 # define DOWN 2
@@ -52,25 +51,25 @@
 
 typedef struct s_mlx //x window data
 {
-	void *mlx;
-	void *win;
-} t_mlx;
+	void	*mlx;
+	void	*win;
+}	t_mlx;
 
 typedef struct s_cie
 {
-	int x;
-	int y;
-} t_cie;
+	int	x;
+	int	y;
+}	t_cie;
 
 typedef struct s_imgdata //imgdata
 {
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	t_cie	cie;
-} t_imgdata;
+}	t_imgdata;
 
 typedef struct s_player //player imgdata
 {
@@ -78,7 +77,7 @@ typedef struct s_player //player imgdata
 	t_imgdata	down;
 	t_imgdata	left;
 	t_imgdata	right;
-} t_player;
+}	t_player;
 
 typedef struct s_img // all imgdata
 {
@@ -87,27 +86,27 @@ typedef struct s_img // all imgdata
 	t_imgdata	exit;
 	t_imgdata	item;
 	t_player	player;
-} t_img;
+}	t_img;
 
 typedef struct s_mapdata //map data is here
 {
-	char	*map; // Map information for one-dimensional arrays
-	int	row;
-	int	col;
-} t_mapdata;
+	char	*map;
+	int		row;
+	int		col;
+}	t_mapdata;
 
 typedef struct s_data // all game data
 {
-	t_mlx	mlxdata;
-	t_img	imgdata;
+	t_mlx		mlxdata;
+	t_img		imgdata;
 	t_mapdata	mapdata;
-	t_cie	cie;
-	 int	dir;
-	 int	index;
-	 int	step;
-	 int	del;
-	 bool	exit;
-} t_data;
+	t_cie		cie;
+	 int		dir;
+	 int		index;
+	 int		step;
+	 int		del;
+	 bool		exit;
+}	t_data;
 
 char	*get_next_line(int fd);
 void	scan_map(char const *filepath, t_data *data);

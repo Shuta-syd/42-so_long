@@ -6,15 +6,15 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:53:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/09 16:02:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:47:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strnlen(char *dst, size_t maxlen)
+size_t	ft_strnlen(char *dst, size_t maxlen)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (len < maxlen && dst[len])
@@ -22,11 +22,11 @@ size_t ft_strnlen(char *dst, size_t maxlen)
 	return (len);
 }
 
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t size;
-	size_t dstlen;
+	size_t	i;
+	size_t	size;
+	size_t	dstlen;
 
 	i = 0;
 	dstlen = 0;

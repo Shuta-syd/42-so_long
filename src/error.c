@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:41:42 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 19:50:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:10:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	scan_wall(char *map, t_data *data)
 
 	j = 0;
 	i = 0;
-	while (i < DB.mapdata.row)
+	while (i < (*data).mapdata.row)
 	{
 		if (map[i++] != '1')
 			return (1);
 	}
-	while (j++ < DB.mapdata.col - 2)
+	while (j++ < (*data).mapdata.col - 2)
 	{
 		i++;
-		if (map[i] != '1' || map[i + DB.mapdata.row - 1] != '1')
+		if (map[i] != '1' || map[i + (*data).mapdata.row - 1] != '1')
 			return (2);
-		i += DB.mapdata.row;
+		i += (*data).mapdata.row;
 	}
 	i += 1;
 	while (map[i] != '\n' && map[i] != '\0')

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 20:32:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:12:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 bool	check_exit(t_data *data)
 {
-	if (ft_strchr(DB.mapdata.map, 'C') == NULL)
+	if (ft_strchr((*data).mapdata.map, 'C') == NULL)
 	{
-		DB.exit = true;
+		(*data).exit = true;
 		return (true);
 	}
 	return (false);
@@ -25,13 +25,13 @@ bool	check_exit(t_data *data)
 void	switch_dir(int keycode, t_data *data)
 {
 	if (keycode == W)
-		DB.dir = TOP;
+		(*data).dir = TOP;
 	else if (keycode == A)
-		DB.dir = LEFT;
+		(*data).dir = LEFT;
 	else if (keycode == S)
-		DB.dir = DOWN;
+		(*data).dir = DOWN;
 	else if (keycode == D)
-		DB.dir = RIGHT;
+		(*data).dir = RIGHT;
 }
 
 //壁に貫通しないための関数 集めたアイテムのカウント
@@ -41,25 +41,25 @@ bool	check_wall_exit(int keycode, t_data *data)
 
 	step = 0;
 	if (keycode == W)
-		step = -(DB.mapdata.row + 1);
+		step = -((*data).mapdata.row + 1);
 	else if (keycode == A)
 		step = -1;
 	else if (keycode == S)
-		step = DB.mapdata.row + 1;
+		step = (*data).mapdata.row + 1;
 	else if (keycode == D)
 		step = 1;
-	if (DB.mapdata.map[DB.index + step] == '1')
+	if ((*data).mapdata.map[(*data).index + step] == '1')
 		return (false);
-	else if (DB.mapdata.map[DB.index + step] == 'E')
+	else if ((*data).mapdata.map[(*data).index + step] == 'E')
 		if (!check_exit(data))
 			return (false);
-	DB.mapdata.map[DB.index] = '0';
+	(*data).mapdata.map[(*data).index] = '0';
 	return (true);
 }
 
 /*
 	WASDキーが押されたときに情報を書き換えて画像を出力するための関数
-	DB.mapdata.mapを書き換えてマップを再出力する
+	(*data).mapdata.mapを書き換えてマップを再出力する
 */
 void	move_player(int keycode, t_data *data)
 {
@@ -67,30 +67,27 @@ void	move_player(int keycode, t_data *data)
 	if (!check_wall_exit(keycode, data))
 		return ;
 	if (keycode == W)
-		DB.mapdata.map[DB.index - (DB.mapdata.row + 1)] = 'P';
+		(*data).mapdata.map[(*data).index - ((*data).mapdata.row + 1)] = 'P';
 	else if (keycode == A)
-		DB.mapdata.map[DB.index - 1] = 'P';
+		(*data).mapdata.map[(*data).index - 1] = 'P';
 	else if (keycode == S)
-		DB.mapdata.map[DB.index + (DB.mapdata.row + 1)] = 'P';
+		(*data).mapdata.map[(*data).index + ((*data).mapdata.row + 1)] = 'P';
 	else if (keycode == D)
-		DB.mapdata.map[DB.index + 1] = 'P';
+		(*data).mapdata.map[(*data).index + 1] = 'P';
 }
 
 int	action(int keycode, t_data *data)
 {
-	//printf("%d\n", keycode);
 	if (keycode == A || keycode == W || keycode == S || keycode == D)
 	{
 		move_player(keycode, data);
 		output_map(data);
-		DB.step++;
+		(*data).step++;
 	}
 	else if (keycode == ESC)
 		destroy_window(data);
-	else if (DB.exit == true)
-	{
-		// clear画面
-	}
+	else if ((*data).exit == true)
+		clear_game(data);
 	return (0);
 }
 

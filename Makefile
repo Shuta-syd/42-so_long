@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/22 20:45:28 by shogura          ###   ########.fr        #
+#    Updated: 2022/05/23 20:58:32 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRC_GNL = gnl/get_next_line.c
 SRC = ${addprefix src/, ${SRC_FILES} ${SRC_GNL}}
 
 OBJS = ${SRC:.c=.o}
+
+NR = norminette -R CheckForbiddenSourceHeader
 
 ifdef home
 	MFLAG = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
@@ -47,6 +49,9 @@ ${MLX}:
 
 home:
 	@make home=1 all
+
+nr:${SRC}
+	${NR} $^ ./inc/so_long.h
 
 clean:
 	${RM} ${OBJS}

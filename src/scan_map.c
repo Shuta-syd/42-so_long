@@ -6,22 +6,24 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/22 13:55:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:50:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	count_item(char *line, t_data *data)
+void	read_fail(int pattern)
 {
-	while (*line++)
-	{
-		if (*line == 'C')
-			DB.mapdata.item++;
-	}
+	if (pattern == 1)
+		ft_putstr("Failed to open file.");
+	else if (pattern == 2)
+		ft_putstr("Invalid Map.");
+	else if (pattern == 3)
+		ft_putstr("Malloc Error.");
+	exit(1);
 }
 
-char *create_map(char **line1, char **line2)
+char	*create_map(char **line1, char **line2)
 {
 	char		*map;
 	size_t	len;
@@ -29,7 +31,11 @@ char *create_map(char **line1, char **line2)
 	len = ft_strlen(*line1) + ft_strlen(*line2);
 	map = ft_calloc(len + 1, sizeof(char));
 	if (map == NULL)
+	{
+		free(*line1);
+		free(*line2);
 		return (NULL);
+	}
 	ft_strcat(map, *line1);
 	ft_strcat(map, *line2);
 	free(*line1);
@@ -38,27 +44,29 @@ char *create_map(char **line1, char **line2)
 }
 
 //read map from filepath || need to free all
-char *read_map(char const *filepath, t_data *data)
+char	*read_map(char const *filepath, t_data *data)
 {
 	int		fd;
-	char *line;
+	char	*line;
 	char	*map;
 
+	map = NULL;
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-	{ /* //need to check error */ }
-	map = get_next_line(fd); // need to check error
+		read_fail(1);
+	map = get_next_line(fd);
 	if (map == NULL)
-	{ /* need to check error */ }
+		read_fail(2);
 	DB.mapdata.row = ft_strlen(map) - 1;
 	while (1)
 	{
 		DB.mapdata.col++;
-		line = get_next_line(fd); // need to check error
+		line = get_next_line(fd);
 		if (line == NULL)
 			break;
-		count_item(line, data);
 		map = create_map(&map, &line);
+		if (map == NULL)
+			read_fail(3);
 	}
 	return (map);
 }
@@ -66,10 +74,7 @@ char *read_map(char const *filepath, t_data *data)
 //scan_map to check errors and read map
 void	scan_map(char const *filepath, t_data *data)
 {
-	//error check
-	//read map
 	DB.mapdata.map = read_map(filepath, data);
 	if (scan_line(DB.mapdata.map, data))
-		ft_putstr("ERROR MAP\n");
-	printf("%s", DB.mapdata.map);
+		ft_putstr("Invalid Map!!\n");
 }

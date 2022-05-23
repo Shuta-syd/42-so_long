@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 15:40:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:52:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	check_exit(t_data *data)
 {
-	if (DB.mapdata.item == DB.c_item)
+	if (ft_strchr(DB.mapdata.map, 'C') == NULL)
 	{
 		DB.exit = true;
 		return (true);
@@ -24,34 +24,32 @@ bool	check_exit(t_data *data)
 
 void	switch_dir(int keycode, t_data *data)
 {
-	if (keycode == WJ)
+	if (keycode == W)
 		DB.dir = TOP;
-	else if (keycode == AJ)
+	else if (keycode == A)
 		DB.dir = LEFT;
-	else if (keycode == SJ)
+	else if (keycode == S)
 		DB.dir = DOWN;
-	else if (keycode == DJ)
+	else if (keycode == D)
 		DB.dir = RIGHT;
 }
 
 //壁に貫通しないための関数 集めたアイテムのカウント
-bool	check_wall_item_exit(int keycode, t_data *data)
+bool	check_wall_exit(int keycode, t_data *data)
 {
 	int	step;
 
 	step = 0;
-	if (keycode == WJ)
+	if (keycode == W)
 		step = -(DB.mapdata.row + 1);
-	else if (keycode == AJ)
+	else if (keycode == A)
 		step = -1;
-	else if (keycode == SJ)
+	else if (keycode == S)
 		step = DB.mapdata.row + 1;
-	else if (keycode == DJ)
+	else if (keycode == D)
 		step = 1;
 	if (DB.mapdata.map[DB.index + step] == '1')
 		return (false);
-	else if (DB.mapdata.map[DB.index + step] == 'C')
-		DB.c_item++;
 	else if (DB.mapdata.map[DB.index + step] == 'E')
 		if (!check_exit(data))
 			return (false);
@@ -66,31 +64,32 @@ bool	check_wall_item_exit(int keycode, t_data *data)
 void	move_player(int keycode, t_data *data)
 {
 	switch_dir(keycode, data);
-	if (!check_wall_item_exit(keycode, data))
+	if (!check_wall_exit(keycode, data))
 		return ;
-	if (keycode == WJ)
+	if (keycode == W)
 		DB.mapdata.map[DB.index - (DB.mapdata.row + 1)] = 'P';
-	else if (keycode == AJ)
+	else if (keycode == A)
 		DB.mapdata.map[DB.index - 1] = 'P';
-	else if (keycode == SJ)
+	else if (keycode == S)
 		DB.mapdata.map[DB.index + (DB.mapdata.row + 1)] = 'P';
-	else if (keycode == DJ)
+	else if (keycode == D)
 		DB.mapdata.map[DB.index + 1] = 'P';
 }
 
 int	action(int keycode, t_data *data)
 {
-	printf("keycode->%d item->%d\n", keycode, DB.c_item);
-	if (keycode == AJ || keycode == WJ || keycode == SJ || keycode == DJ)
+	if (keycode == A || keycode == W || keycode == S || keycode == D)
 	{
 		move_player(keycode, data);
 		output_map(data);
 		DB.step++;
 	}
+	else if (DB.exit == true)
+	{
+		//clear画面
+	}
 	else
-		clear_window(keycode, data);
-	if (DB.exit == true)
-		clear_window(keycode, data);
+		destroy_window(data);
 	return (0);
 }
 

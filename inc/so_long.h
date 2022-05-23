@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 15:46:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:42:08 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_mapdata //map data is here
 	char	*map; // Map information for one-dimensional arrays
 	int	row;
 	int	col;
-	int	item;
 } t_mapdata;
 
 typedef struct s_data // all game data
@@ -105,9 +104,9 @@ typedef struct s_data // all game data
 	t_cie	cie;
 	 int	dir;
 	 int	index;
-	 int	c_item;
 	 int	step;
-	bool	exit;
+	 int	del;
+	 bool	exit;
 } t_data;
 
 char	*get_next_line(int fd);
@@ -118,5 +117,5 @@ void	output_map(t_data *data);
 int		action(int keycode, t_data *data);
 int		scan_wall(char *map, t_data *data);
 int		scan_line(char *map, t_data *data);
-void	clear_window(int keycode, t_data *data);
+int		destroy_window(t_data *data);
 #endif

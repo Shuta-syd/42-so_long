@@ -6,17 +6,17 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:41:42 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/21 19:42:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:50:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 // Check if the map is walled off
-int scan_wall(char *map, t_data *data)
+int	scan_wall(char *map, t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	i = 0;
@@ -32,7 +32,7 @@ int scan_wall(char *map, t_data *data)
 			return (2);
 		i += DB.mapdata.row;
 	}
-	i++;
+	i += 1;
 	while (map[i] != '\n' && map[i] != '\0')
 	{
 		if (map[i++] != '1')
@@ -42,7 +42,7 @@ int scan_wall(char *map, t_data *data)
 }
 
 // scan_line() to check valid map or not
-int scan_line(char *map, t_data *data)
+int	scan_line(char *map, t_data *data)
 {
 	if (scan_wall(map, data))
 		return (1);

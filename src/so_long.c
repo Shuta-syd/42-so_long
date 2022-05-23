@@ -6,25 +6,18 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 15:40:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:53:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 //delete window by esc or x button
-void	clear_window(int keycode, t_data *data)
+int	destroy_window(t_data *data)
 {
-	if (keycode == ESCJ)
-	{
-		mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
-		exit(1);
-	}
-	else if (DB.exit == true) //CLEAR画面を表示してもいい
-	{
-		mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
-		exit(1);
-	}
+	mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
+	ft_putstr("[EXIT]");
+	exit(1);
 }
 
 //check error in args
@@ -59,19 +52,19 @@ void	init_data(t_data *data)
 	DB.mapdata = (t_mapdata){};
 }
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
 	t_data	data;
 
 	scan_args(argc, argv);
 	init_data(&data);
 	scan_map(argv[1], &data);
-	printf("item->%d\n", data.mapdata.item);
 	init_window(&data);
 	init_image(&data);
 	data.dir = RIGHT;
 	output_map(&data);
 	mlx_key_hook(data.mlxdata.win, action, &data);
+	mlx_hook(data.mlxdata.win, 17, 1L << 2, destroy_window, &data);
 	mlx_loop(data.mlxdata.mlx);
 	// system("leaks so_long");
 	return (0);

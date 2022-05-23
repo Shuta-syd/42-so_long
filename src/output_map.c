@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:20:24 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/22 21:06:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:04:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	output_player(t_data *data, int x, int y, int index)
 {
-	// printf("x->%d y->%d\n", x, y);
 	DB.cie.x = x;
 	DB.cie.y = y;
 	DB.index = index;

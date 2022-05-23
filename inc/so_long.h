@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 19:42:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:02:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define A 0
 # define S 1
 # define D 2
+# define ESC 53
 //JSキー keymap
 # define WJ 119
 # define AJ 97
@@ -39,7 +40,6 @@
 # define DJ 100
 # define ESCJ 65307
 
-# define ESC 53
 # define ME "img/player/me.xpm"
 # define WALL_PATH "img/wall/wall1.xpm"
 # define EMPTY_PATH "img/empty/empty1.xpm"

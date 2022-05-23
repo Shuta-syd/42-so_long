@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 19:52:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:32:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,19 @@ void	move_player(int keycode, t_data *data)
 
 int	action(int keycode, t_data *data)
 {
+	//printf("%d\n", keycode);
 	if (keycode == A || keycode == W || keycode == S || keycode == D)
 	{
 		move_player(keycode, data);
 		output_map(data);
 		DB.step++;
 	}
+	else if (keycode == ESC)
+		destroy_window(data);
 	else if (DB.exit == true)
 	{
-		//clear画面
+		// clear画面
 	}
-	else
-		destroy_window(data);
 	return (0);
 }
 

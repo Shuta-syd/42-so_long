@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 19:53:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:36:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	destroy_window(t_data *data)
 {
 	mlx_destroy_window(DB.mlxdata.mlx, DB.mlxdata.win);
 	ft_putstr("[EXIT]");
+	free(DB.mapdata.map);
 	exit(1);
 }
 
@@ -63,9 +64,9 @@ int	main(int argc, char const *argv[])
 	init_image(&data);
 	data.dir = RIGHT;
 	output_map(&data);
-	mlx_key_hook(data.mlxdata.win, action, &data);
+	mlx_hook(data.mlxdata.win, 2, 1L << 0 , action, &data);
 	mlx_hook(data.mlxdata.win, 17, 1L << 2, destroy_window, &data);
+	mlx_do_key_autorepeaton(data.mlxdata.mlx);
 	mlx_loop(data.mlxdata.mlx);
-	// system("leaks so_long");
 	return (0);
 }

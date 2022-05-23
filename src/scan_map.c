@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 19:50:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:05:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void	scan_map(char const *filepath, t_data *data)
 {
 	DB.mapdata.map = read_map(filepath, data);
 	if (scan_line(DB.mapdata.map, data))
+	{
+		free(DB.mapdata.map);
 		ft_putstr("Invalid Map!!\n");
+	}
 }

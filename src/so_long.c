@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 16:53:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:48:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	destroy_window(t_data *data)
 {
 	mlx_destroy_window(data->mlxdata.mlx, data->mlxdata.win);
-	ft_putstr("[EXIT]");
+	ft_putstr("[EXIT]\n");
 	free(data->mapdata.map);
 	free(data->mapdata.map_backup);
 	exit(1);
@@ -27,12 +27,12 @@ void	scan_args(int argc, char const *argv[])
 {
 	if (argc > 2 || argc == 1)
 	{
-		ft_putstr("argument error\nUsage ./so_long [map name].ber");
+		ft_putstr("Error\nargument error\nUsage ./so_long [map name].ber");
 		exit(1);
 	}
 	else if (ft_strstr(argv[1], ".ber") == NULL)
 	{
-		ft_putstr("map name is invalid\nUsage ./so_long [map name].ber");
+		ft_putstr("Error\nmap name is invalid\nUsage ./so_long [map name].ber");
 		exit(1);
 	}
 }

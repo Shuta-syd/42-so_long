@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:41:42 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:10:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 19:21:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,44 @@ int	scan_wall(char *map, t_data *data)
 	return (0);
 }
 
+bool	check_extra(char *map, char sign)
+{
+	int	count;
+
+	count = 0;
+	while (*map)
+	{
+		if (*map == sign)
+			count++;
+		map++;
+	}
+	if (count > 1 || count == 0)
+		return (false);
+	return (true);
+}
+
+bool	check_extra_params(char *map, char *vars)
+{
+	bool	ret;
+	int		i;
+
+	while (*map)
+	{
+		ret = false;
+		i = 0;
+		while (vars[i])
+		{
+			if (*map == vars[i])
+				ret = true;
+			i++;
+		}
+		if (ret == false)
+			return (false);
+		map++;
+	}
+	return (true);
+}
+
 // scan_line() to check valid map or not
 int	scan_line(char *map, t_data *data)
 {
@@ -50,7 +88,9 @@ int	scan_line(char *map, t_data *data)
 		return (2);
 	else if (ft_strchr(map, 'C') == NULL)
 		return (3);
-	else if (ft_strchr(map, 'P') == NULL)
+	else if (!check_extra(map, 'P'))
 		return (4);
+	else if (!check_extra_params(map, "01MPCE"))
+		return (5);
 	return (0);
 }

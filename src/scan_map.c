@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 16:50:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 19:10:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	read_fail(int pattern)
 {
 	if (pattern == 1)
-		ft_putstr("Failed to open file.");
+		ft_putstr("Error\nFailed to open file.\n");
 	else if (pattern == 2)
-		ft_putstr("Invalid Map.");
+		ft_putstr("Error\nInvalid Map!!\n");
 	else if (pattern == 3)
-		ft_putstr("Malloc Error.");
+		ft_putstr("Error\nMalloc Error!!\n");
 	exit(1);
 }
 
@@ -97,7 +97,8 @@ void	scan_map(char const *filepath, t_data *data)
 	{
 		free(data->mapdata.map);
 		free(data->mapdata.map_backup);
-		ft_putstr("Invalid Map!!\n");
+		ft_putstr("Error\nInvalid Map!!\n");
+		exit(1);
 	}
 	search_monster(data);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:55:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/24 17:16:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define AJ 97
 # define SJ 115
 # define DJ 100
+# define RJ 114
 # define ESCJ 65307
 
 # define ME "img/player/me.xpm"

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 22:26:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/24 17:16:42 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ bool	check_exit(t_data *data)
 
 void	switch_dir(int keycode, t_data *data)
 {
-	if (keycode == W)
+	if (keycode == WJ)
 		data->dir = TOP;
-	else if (keycode == A)
+	else if (keycode == AJ)
 		data->dir = LEFT;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		data->dir = DOWN;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		data->dir = RIGHT;
 }
 
@@ -40,13 +40,13 @@ bool	check_wall_exit(int keycode, t_data *data)
 	int	step;
 
 	step = 0;
-	if (keycode == W)
+	if (keycode == WJ)
 		step = -(data->mapdata.row + 1);
-	else if (keycode == A)
+	else if (keycode == AJ)
 		step = -1;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		step = data->mapdata.row + 1;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		step = 1;
 	if (data->mapdata.map[data->index + step] == '1')
 		return (false);
@@ -66,28 +66,27 @@ void	move_player(int keycode, t_data *data)
 	switch_dir(keycode, data);
 	if (!check_wall_exit(keycode, data))
 		return ;
-	if (keycode == W)
+	if (keycode == WJ)
 		data->mapdata.map[data->index - (data->mapdata.row + 1)] = 'P';
-	else if (keycode == A)
+	else if (keycode == AJ)
 		data->mapdata.map[data->index - 1] = 'P';
-	else if (keycode == S)
+	else if (keycode == SJ)
 		data->mapdata.map[data->index + (data->mapdata.row + 1)] = 'P';
-	else if (keycode == D)
+	else if (keycode == DJ)
 		data->mapdata.map[data->index + 1] = 'P';
 }
 
 int	action(int keycode, t_data *data)
 {
-	//printf("%s\n%s________\n", data->mapdata.map, data->mapdata.map_backup);
-	if (keycode == A || keycode == W || keycode == S || keycode == D)
+	if (keycode == AJ || keycode == WJ || keycode == SJ || keycode == DJ)
 	{
 		move_player(keycode, data);
 		output_map(data);
 		data->step++;
 	}
-	else if (keycode == R && data->exit == true)
+	else if (keycode == RJ && data->exit == true)
 		replay_game(data);
-	else if (keycode == ESC)
+	else if (keycode == ESCJ)
 		destroy_window(data);
 	if (data->exit == true)
 		clear_game(data);

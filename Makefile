@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/25 13:24:46 by shogura          ###   ########.fr        #
+#    Updated: 2022/05/25 17:18:50 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,15 +37,13 @@ endif
 
 all: ${NAME}
 
-${NAME}:${OBJS} ${MLX} ${LIBFT}
-	${CC} ${CFLAGS} ${MFLAG} -o $@ $^
+${NAME}:
+	cd mlx/ && ./configure
+	${CC} ${CFLAGS} ${MFLAG} -o $@ ${SRC} ${MLX} ${LIBFT}
 	@make clean
 
 ${LIBFT}:
 	@make -C src/libft
-
-${MLX}:
-	@make -C ./mlx
 
 home:
 	@make home=1 all

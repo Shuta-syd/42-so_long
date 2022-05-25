@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:24:09 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 16:13:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:41:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	moveup_monster(t_data *data)
 	map = data->mapdata.map;
 	m_row = data->m_index / data->mapdata.row;
 	if ((m_row > 0 || m_row < data->mapdata.row)
-		&& map[data->m_index - step] != '1')
+		&& (map[data->m_index - step] != '1'
+			&& map[data->m_index + step] != 'C'))
 	{
 		map[data->m_index - step] = 'M';
 		map[data->m_index] = '0';
@@ -41,11 +42,22 @@ int	movedown_monster(t_data *data)
 	map = data->mapdata.map;
 	m_row = data->m_index / data->mapdata.row;
 	if ((m_row > 0 || m_row < data->mapdata.row)
-		&& map[data->m_index + step] != '1')
+		&& (map[data->m_index + step] != '1'
+			&& map[data->m_index + step] != 'C'))
 	{
 		map[data->m_index + step] = 'M';
 		map[data->m_index] = '0';
 		data->m_index += step;
+	}
+	return (0);
+}
+
+int	render_map(t_data *data)
+{
+	if (!data->lose && !data->exit)
+	{
+		output_map(data);
+		output_step(data);
 	}
 	return (0);
 }
@@ -72,5 +84,5 @@ int	move_monster(t_data *data)
 		if (el_index <= data->m_index)
 			data->m_index_backup = data->m_index;
 	}
-	return (0);
+	return (render_map(data));
 }

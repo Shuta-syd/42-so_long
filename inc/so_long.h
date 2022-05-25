@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 15:51:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:38:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_data // all game data
 	 int		step;
 	 int		del;
 	 bool		exit;
+	 bool		lose;
 }	t_data;
 
 char	*get_next_line(int fd);

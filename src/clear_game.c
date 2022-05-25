@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:13:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 16:16:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:29:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	lose_game(t_data *data)
 		data->mapdata.row / 2 * WINSIZE - 75,
 		data->mapdata.col / 2 * WINSIZE + 25, 0xFF0000,
 		"PRESS R TO PLAY AGAIN!!");
-	data->exit = true;
+	data->lose = true;
 	return (false);
 }
 
@@ -43,6 +43,7 @@ void	clear_game(t_data *data)
 void	replay_game(t_data *data)
 {
 	data->exit = false;
+	data->lose = false;
 	data->dir = RIGHT;
 	data->step = 0;
 	free(data->mapdata.map);

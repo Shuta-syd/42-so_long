@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 16:16:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:28:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ bool	move_player(int keycode, t_data *data)
 
 int	action(int keycode, t_data *data)
 {
-	if (keycode == A || keycode == W || keycode == S || keycode == D)
+	if ((keycode == A || keycode == W || keycode == S || keycode == D)
+		&& (!data->exit && !data->lose))
 	{
 		if (!move_player(keycode, data))
 			return (1);
@@ -89,7 +90,7 @@ int	action(int keycode, t_data *data)
 		data->step++;
 		output_step(data);
 	}
-	else if (keycode == R && data->exit == true)
+	else if (keycode == R && (data->exit || data->lose))
 		replay_game(data);
 	else if (keycode == ESC)
 		destroy_window(data);

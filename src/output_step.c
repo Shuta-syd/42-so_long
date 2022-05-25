@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:16:32 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 12:36:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:14:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	output_step(t_data *data)
 	if (step == NULL)
 		destroy_window(data);
 	mlx_string_put(data->mlxdata.mlx, data->mlxdata.win,
-			WINSIZE / 3, WINSIZE / 3, 0xFF0000, "CURRENT STEP:");
+		WINSIZE / 3, WINSIZE / 3, 0xFF0000, "CURRENT STEP:");
 	mlx_string_put(data->mlxdata.mlx, data->mlxdata.win,
-			WINSIZE * 3, WINSIZE / 3, 0xFF0000, step);
+		WINSIZE * 3, WINSIZE / 3, 0xFF0000, step);
 	free(step);
 }

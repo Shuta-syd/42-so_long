@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:10:54 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 22:04:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 15:33:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	main(int argc, char const *argv[])
 	init_image(&data);
 	data.dir = RIGHT;
 	output_map(&data);
+	output_step(&data);
 	mlx_hook(data.mlxdata.win, 2, 1L << 0, action, &data);
 	mlx_hook(data.mlxdata.win, 17, 1L << 2, destroy_window, &data);
+	mlx_loop_hook(data.mlxdata.mlx, move_monster, &data);
 	mlx_loop(data.mlxdata.mlx);
 	return (0);
 }

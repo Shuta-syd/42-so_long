@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 13:17:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 15:51:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ typedef struct s_data // all game data
 	t_mapdata	mapdata;
 	t_cie		cie;
 	 int		dir;
+	 int		m_index;
+	 int		m_index_backup;
 	 int		index;
 	 int		step;
 	 int		del;
@@ -125,4 +127,5 @@ void	clear_game(t_data *data);
 void	replay_game(t_data *data);
 void	output_step(t_data *data);
 bool	lose_game(t_data *data);
+int		move_monster(t_data *data);
 #endif

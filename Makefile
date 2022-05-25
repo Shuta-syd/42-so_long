@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/25 12:22:17 by shogura          ###   ########.fr        #
+#    Updated: 2022/05/25 13:24:46 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX = mlx/libmlx_Darwin.a
 LIBFT = src/libft/libft.a
 
 SRC_FILES = so_long.c scan_map.c init_window.c init_image.c output_map.c\
-						hook_action.c error.c clear_game.c output_step.c
+						hook_action.c error.c clear_game.c output_step.c move_monster.c
 
 SRC_GNL = gnl/get_next_line.c
 

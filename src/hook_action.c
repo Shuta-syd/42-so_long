@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 13:21:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:16:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	switch_dir(int keycode, t_data *data)
 		data->dir = RIGHT;
 }
 
-//壁に貫通しないための関数 集めたアイテムのカウント
+//壁に貫通しないための関数
 bool	check_wall_exit_monster(int keycode, t_data *data)
 {
 	int	step;
@@ -83,7 +83,7 @@ int	action(int keycode, t_data *data)
 {
 	if (keycode == A || keycode == W || keycode == S || keycode == D)
 	{
-		if(!move_player(keycode, data))
+		if (!move_player(keycode, data))
 			return (1);
 		output_map(data);
 		data->step++;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 22:11:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:16:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,23 @@ char	*read_map(char const *filepath, t_data *data)
 	return (map);
 }
 
+void	search_monster(t_data *data)
+{
+	int		i;
+	char	*map;
+
+	i = 0;
+	map = data->mapdata.map;
+	while (map[i])
+		if (map[i++] == 'M')
+			break ;
+	if (map[i] == '\0')
+		data->m_index = -1;
+	else
+		data->m_index = i - 1;
+	data->m_index_backup = data->m_index;
+}
+
 //scan_map to check errors and read map
 void	scan_map(char const *filepath, t_data *data)
 {
@@ -82,4 +99,5 @@ void	scan_map(char const *filepath, t_data *data)
 		free(data->mapdata.map_backup);
 		ft_putstr("Invalid Map!!\n");
 	}
+	search_monster(data);
 }

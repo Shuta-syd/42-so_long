@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:30:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:30:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 12:56:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	init_image(t_data *data)
 		PLAYER_LEFT_PATH);
 	init_all_images(&data->imgdata.player.right, data->mlxdata.mlx,
 		PLAYER_RIGHT_PATH);
+	init_all_images(&data->imgdata.monster, data->mlxdata.mlx, MONSTER_PATH);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/24 17:16:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 13:21:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,34 @@ bool	check_exit(t_data *data)
 
 void	switch_dir(int keycode, t_data *data)
 {
-	if (keycode == WJ)
+	if (keycode == W)
 		data->dir = TOP;
-	else if (keycode == AJ)
+	else if (keycode == A)
 		data->dir = LEFT;
-	else if (keycode == SJ)
+	else if (keycode == S)
 		data->dir = DOWN;
-	else if (keycode == DJ)
+	else if (keycode == D)
 		data->dir = RIGHT;
 }
 
 //壁に貫通しないための関数 集めたアイテムのカウント
-bool	check_wall_exit(int keycode, t_data *data)
+bool	check_wall_exit_monster(int keycode, t_data *data)
 {
 	int	step;
 
 	step = 0;
-	if (keycode == WJ)
+	if (keycode == W)
 		step = -(data->mapdata.row + 1);
-	else if (keycode == AJ)
+	else if (keycode == A)
 		step = -1;
-	else if (keycode == SJ)
+	else if (keycode == S)
 		step = data->mapdata.row + 1;
-	else if (keycode == DJ)
+	else if (keycode == D)
 		step = 1;
 	if (data->mapdata.map[data->index + step] == '1')
 		return (false);
+	else if (data->mapdata.map[data->index + step] == 'M')
+		return (lose_game(data));
 	else if (data->mapdata.map[data->index + step] == 'E')
 		if (!check_exit(data))
 			return (false);
@@ -61,32 +63,35 @@ bool	check_wall_exit(int keycode, t_data *data)
 	WASDキーが押されたときに情報を書き換えて画像を出力するための関数
 	data->mapdata.mapを書き換えてマップを再出力する
 */
-void	move_player(int keycode, t_data *data)
+bool	move_player(int keycode, t_data *data)
 {
 	switch_dir(keycode, data);
-	if (!check_wall_exit(keycode, data))
-		return ;
-	if (keycode == WJ)
+	if (!check_wall_exit_monster(keycode, data))
+		return (false);
+	if (keycode == W)
 		data->mapdata.map[data->index - (data->mapdata.row + 1)] = 'P';
-	else if (keycode == AJ)
+	else if (keycode == A)
 		data->mapdata.map[data->index - 1] = 'P';
-	else if (keycode == SJ)
+	else if (keycode == S)
 		data->mapdata.map[data->index + (data->mapdata.row + 1)] = 'P';
-	else if (keycode == DJ)
+	else if (keycode == D)
 		data->mapdata.map[data->index + 1] = 'P';
+	return (true);
 }
 
 int	action(int keycode, t_data *data)
 {
-	if (keycode == AJ || keycode == WJ || keycode == SJ || keycode == DJ)
+	if (keycode == A || keycode == W || keycode == S || keycode == D)
 	{
-		move_player(keycode, data);
+		if(!move_player(keycode, data))
+			return (1);
 		output_map(data);
 		data->step++;
+		output_step(data);
 	}
-	else if (keycode == RJ && data->exit == true)
+	else if (keycode == R && data->exit == true)
 		replay_game(data);
-	else if (keycode == ESCJ)
+	else if (keycode == ESC)
 		destroy_window(data);
 	if (data->exit == true)
 		clear_game(data);

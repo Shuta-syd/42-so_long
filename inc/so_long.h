@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/24 17:16:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 13:17:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 # include "../src/libft/libft.h"
-# include <stdbool.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <mlx.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -41,7 +41,6 @@
 # define RJ 114
 # define ESCJ 65307
 
-# define ME "img/player/me.xpm"
 # define WALL_PATH "img/wall/wall1.xpm"
 # define EMPTY_PATH "img/empty/empty1.xpm"
 # define ITEM_PATH "img/item/item1.xpm"
@@ -50,6 +49,7 @@
 # define PLAYER_DOWN_PATH "img/player/player1_down.xpm"
 # define PLAYER_LEFT_PATH "img/player/player1_left.xpm"
 # define PLAYER_RIGHT_PATH "img/player/player1_right.xpm"
+# define MONSTER_PATH "img/monster/monster1.xpm"
 
 typedef struct s_mlx //x window data
 {
@@ -87,6 +87,7 @@ typedef struct s_img // all imgdata
 	t_imgdata	empty;
 	t_imgdata	exit;
 	t_imgdata	item;
+	t_imgdata	monster;
 	t_player	player;
 }	t_img;
 
@@ -122,4 +123,6 @@ int		scan_line(char *map, t_data *data);
 int		destroy_window(t_data *data);
 void	clear_game(t_data *data);
 void	replay_game(t_data *data);
+void	output_step(t_data *data);
+bool	lose_game(t_data *data);
 #endif

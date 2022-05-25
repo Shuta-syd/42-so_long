@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:20:24 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/23 21:31:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/25 12:57:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	output_splites(t_data *data, int col, int row, int index)
 	else if (data->mapdata.map[index] == 'C')
 		mlx_put_image_to_window(data->mlxdata.mlx, data->mlxdata.win,
 			data->imgdata.item.img, x, y);
+	else if (data->mapdata.map[index] == 'M')
+		mlx_put_image_to_window(data->mlxdata.mlx, data->mlxdata.win,
+			data->imgdata.monster.img, x, y);
 }
 
 //output map to the window

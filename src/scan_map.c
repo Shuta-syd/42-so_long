@@ -6,13 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 19:10:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/26 17:43:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	read_fail(int pattern)
+void	read_fail(int pattern, t_data *data)
 {
 	if (pattern == 1)
 		ft_putstr("Error\nFailed to open file.\n");
@@ -20,6 +20,17 @@ void	read_fail(int pattern)
 		ft_putstr("Error\nInvalid Map!!\n");
 	else if (pattern == 3)
 		ft_putstr("Error\nMalloc Error!!\n");
+	else if (pattern == 4)
+	{
+		ft_putstr("Error\nMalloc Error!!\n");
+		free(data->mapdata.map_backup);
+	}
+	else if (pattern == 5)
+	{
+		ft_putstr("Error\nInvalid Map!!\n");
+		free(data->mapdata.map);
+		free(data->mapdata.map_backup);
+	}
 	exit(1);
 }
 
@@ -53,10 +64,10 @@ char	*read_map(char const *filepath, t_data *data)
 	map = NULL;
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		read_fail(1);
+		read_fail(1, data);
 	map = get_next_line(fd);
 	if (map == NULL)
-		read_fail(2);
+		read_fail(2, data);
 	data->mapdata.row = ft_strlen(map) - 1;
 	while (1)
 	{
@@ -66,7 +77,7 @@ char	*read_map(char const *filepath, t_data *data)
 			break ;
 		map = create_map(&map, &line);
 		if (map == NULL)
-			read_fail(3);
+			read_fail(3, data);
 	}
 	data->mapdata.map_backup = ft_strdup(map);
 	return (map);
@@ -93,12 +104,13 @@ void	search_monster(t_data *data)
 void	scan_map(char const *filepath, t_data *data)
 {
 	data->mapdata.map = read_map(filepath, data);
-	if (scan_line(data->mapdata.map, data))
+	if (data->mapdata.map_backup == NULL)
+		read_fail(4, data);
+	else if (scan_line(data->mapdata.map, data))
 	{
-		free(data->mapdata.map);
-		free(data->mapdata.map_backup);
-		ft_putstr("Error\nInvalid Map!!\n");
-		exit(1);
+		printf("%s\n", data->mapdata.map);
+		printf("%d", scan_line(data->mapdata.map, data));
+		read_fail(5, data);
 	}
 	search_monster(data);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:41:42 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 19:21:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/26 17:46:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	scan_wall(char *map, t_data *data)
 
 	j = 0;
 	i = 0;
-	while (i < (*data).mapdata.row)
+	while (i < data->mapdata.row)
 	{
 		if (map[i++] != '1')
 			return (1);
 	}
-	while (j++ < (*data).mapdata.col - 2)
+	while (j++ < data->mapdata.col - 2)
 	{
 		i++;
-		if (map[i] != '1' || map[i + (*data).mapdata.row - 1] != '1')
+		if (map[i] != '1' || map[i + data->mapdata.row - 1] != '1')
 			return (2);
-		i += (*data).mapdata.row;
+		i += data->mapdata.row;
 	}
 	i += 1;
 	while (map[i] != '\n' && map[i] != '\0')
@@ -68,9 +68,8 @@ bool	check_extra_params(char *map, char *vars)
 		i = 0;
 		while (vars[i])
 		{
-			if (*map == vars[i])
+			if (*map == vars[i++])
 				ret = true;
-			i++;
 		}
 		if (ret == false)
 			return (false);
@@ -90,7 +89,7 @@ int	scan_line(char *map, t_data *data)
 		return (3);
 	else if (!check_extra(map, 'P'))
 		return (4);
-	else if (!check_extra_params(map, "01MPCE"))
+	else if (!check_extra_params(map, "01MPCE\n"))
 		return (5);
 	return (0);
 }

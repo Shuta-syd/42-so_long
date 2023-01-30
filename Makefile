@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 15:04:02 by shogura           #+#    #+#              #
-#    Updated: 2022/05/27 13:10:58 by shogura          ###   ########.fr        #
+#    Updated: 2022/06/05 15:23:43 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ all: ${NAME}
 ${NAME}:
 	cd mlx/ && ./configure
 	${CC} ${CFLAGS} ${MFLAG} -o $@ ${SRC} ${MLX} ${LIBFT}
-	@make clean
 
 ${LIBFT}:
 	@make -C src/libft

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:47:47 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 17:02:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/05 15:23:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ bool	check_exit(t_data *data)
 
 void	switch_dir(int keycode, t_data *data)
 {
-	if (keycode == W)
+	if (keycode == WJ)
 		data->dir = TOP;
-	else if (keycode == A)
+	else if (keycode == AJ)
 		data->dir = LEFT;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		data->dir = DOWN;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		data->dir = RIGHT;
 }
 
@@ -40,13 +40,13 @@ bool	check_wall_exit_monster(int keycode, t_data *data)
 	int	step;
 
 	step = 0;
-	if (keycode == W)
+	if (keycode == WJ)
 		step = -(data->mapdata.row + 1);
-	else if (keycode == A)
+	else if (keycode == AJ)
 		step = -1;
-	else if (keycode == S)
+	else if (keycode == SJ)
 		step = data->mapdata.row + 1;
-	else if (keycode == D)
+	else if (keycode == DJ)
 		step = 1;
 	if (data->mapdata.map[data->index + step] == '1')
 		return (false);
@@ -68,20 +68,20 @@ bool	move_player(int keycode, t_data *data)
 	switch_dir(keycode, data);
 	if (!check_wall_exit_monster(keycode, data))
 		return (false);
-	if (keycode == W)
+	if (keycode == WJ)
 		data->mapdata.map[data->index - (data->mapdata.row + 1)] = 'P';
-	else if (keycode == A)
+	else if (keycode == AJ)
 		data->mapdata.map[data->index - 1] = 'P';
-	else if (keycode == S)
+	else if (keycode == SJ)
 		data->mapdata.map[data->index + (data->mapdata.row + 1)] = 'P';
-	else if (keycode == D)
+	else if (keycode == DJ)
 		data->mapdata.map[data->index + 1] = 'P';
 	return (true);
 }
 
 int	action(int keycode, t_data *data)
 {
-	if ((keycode == A || keycode == W || keycode == S || keycode == D)
+	if ((keycode == AJ || keycode == WJ || keycode == SJ || keycode == DJ)
 		&& (!data->exit && !data->lose))
 	{
 		if (!move_player(keycode, data))
@@ -90,21 +90,11 @@ int	action(int keycode, t_data *data)
 		data->step++;
 		output_step(data);
 	}
-	else if (keycode == R && (data->exit || data->lose))
+	else if (keycode == RJ && (data->exit || data->lose))
 		replay_game(data);
-	else if (keycode == ESC)
+	else if (keycode == ESCJ)
 		destroy_window(data);
 	if (data->exit == true)
 		clear_game(data);
 	return (0);
 }
-
-/*
-               13            26             39              52            65
-	01234567890123 4567890123456  7890123456789   0123456789012  3456789012345
-	1111111111111| 10010000000C1| 1000011111001| 1P0011E000001| 1111111111111
-
-	横->13（0 ~ 12）縦->5(0 ~ 4)
-				W						A					S					D
-	P->43 上->29(-14) 左->X(-1) 下->X(+14) 右->44(+1)
-*/

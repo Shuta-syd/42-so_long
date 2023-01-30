@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:14:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/25 18:47:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:23:50 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ typedef struct s_data // all game data
 	t_img		imgdata;
 	t_mapdata	mapdata;
 	t_cie		cie;
-	 int		dir;
-	 int		m_index;
-	 int		m_index_backup;
-	 int		index;
-	 int		step;
-	 int		del;
-	 bool		exit;
-	 bool		lose;
+	int		dir;
+	unsigned long frame;
+	int	index;
+	int		step;
+	int		del;
+	bool	monster;
+	bool	exit;
+	bool		lose;
 }	t_data;
 
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:08:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/26 17:43:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/06 15:31:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,6 @@ char	*read_map(char const *filepath, t_data *data)
 	return (map);
 }
 
-void	search_monster(t_data *data)
-{
-	int		i;
-	char	*map;
-
-	i = 0;
-	map = data->mapdata.map;
-	while (map[i])
-		if (map[i++] == 'M')
-			break ;
-	if (map[i] == '\0')
-		data->m_index = -1;
-	else
-		data->m_index = i - 1;
-	data->m_index_backup = data->m_index;
-}
-
 //scan_map to check errors and read map
 void	scan_map(char const *filepath, t_data *data)
 {
@@ -107,10 +90,9 @@ void	scan_map(char const *filepath, t_data *data)
 	if (data->mapdata.map_backup == NULL)
 		read_fail(4, data);
 	else if (scan_line(data->mapdata.map, data))
-	{
-		printf("%s\n", data->mapdata.map);
-		printf("%d", scan_line(data->mapdata.map, data));
 		read_fail(5, data);
-	}
-	search_monster(data);
+	if (ft_strchr(data->mapdata.map, 'M'))
+		data->monster = true;
+	else
+		data->monster = false;
 }
